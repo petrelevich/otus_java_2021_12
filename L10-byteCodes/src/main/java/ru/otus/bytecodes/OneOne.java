@@ -5,7 +5,6 @@ javap -c -verbose OneOne.class
 */
 public class OneOne {
     int add(int x, int y) {
-        boolean t = true;
         return x + y;
     }
 }
