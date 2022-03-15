@@ -19,10 +19,10 @@ public class DemoIO {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         System.out.println("current dir: " + System.getProperty("user.dir"));
-         copyFile("textFile.txt");
+        // copyFile("textFile.txt");
         // writeObject("person.bin");
-        // readObject("person.bin");
-        // writeTextFile("textFile.txt");
+         readObject("person.bin");
+       //  writeTextFile("textFile.txt");
         //  readTextFile("textFile.txt");
 
     }
