@@ -7,7 +7,7 @@
     <util:constant id = "in" static-field="java.lang.System.in"/>
     <util:constant id = "out" static-field="java.lang.System.out"/>
 
-    <bean id="ioService" class="ru.otus.services.IOServiceConsole">
+    <bean id="ioService" class="ru.otus.services.IOServiceStreams">
         <constructor-arg name="in" ref="in" />
         <constructor-arg name="out" ref="out" />
     </bean>

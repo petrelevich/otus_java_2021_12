@@ -23,7 +23,7 @@ class AppTest {
             "gameProcessor, ru.otus.services.GameProcessor",
 
             "IOService, ru.otus.services.IOService",
-            "IOServiceConsole, ru.otus.services.IOService",
+            "IOServiceStreams, ru.otus.services.IOService",
             "ioService, ru.otus.services.IOService",
 
             "PlayerService, ru.otus.services.PlayerService",

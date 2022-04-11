@@ -28,7 +28,7 @@ public class AppConfig {
 
     @Bean
     public IOService ioService() {
-        return new IOServiceConsole(System.out, System.in);
+        return new IOServiceStreams(System.out, System.in);
     }
 
 }

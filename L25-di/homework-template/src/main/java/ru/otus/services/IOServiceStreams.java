@@ -4,11 +4,11 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-public class IOServiceConsole implements IOService {
+public class IOServiceStreams implements IOService {
     private final PrintStream out;
     private final Scanner in;
 
-    public IOServiceConsole(PrintStream out, InputStream in) {
+    public IOServiceStreams(PrintStream out, InputStream in) {
         this.out = out;
         this.in = new Scanner(in);
     }
