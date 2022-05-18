@@ -144,7 +144,7 @@ class SensorDataProcessorBufferedTest {
 
     private void joinThread(Thread thread) {
         try {
-            thread.join(1);
+            thread.join(10);
         } catch (InterruptedException ignored) {
         }
     }
