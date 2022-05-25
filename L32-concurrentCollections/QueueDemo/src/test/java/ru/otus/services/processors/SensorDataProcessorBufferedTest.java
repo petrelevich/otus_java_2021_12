@@ -1,5 +1,6 @@
 package ru.otus.services.processors;
 
+import java.util.concurrent.atomic.AtomicBoolean;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
@@ -120,6 +121,51 @@ class SensorDataProcessorBufferedTest {
         var flushedData = captor.getAllValues();
 
         assertThat(flushedData).hasSize(1);
+    }
+
+    @RepeatedTest(100)
+    void shouldCorrectFlushDataAndWriteThreads() throws InterruptedException {
+        List<SensorData> sensorDataList = getSensorDataForTest(BUFFER_SIZE - 1);
+
+        var latchReady = new CountDownLatch(2);
+        var processFlag = new AtomicBoolean(true);
+
+        var writer = new SensorDataBufferedWriter() {
+            private final List<SensorData> data = new ArrayList<>();
+
+            @Override
+            public void writeBufferedData(List<SensorData> bufferedData) {
+                data.addAll(bufferedData);
+            }
+
+            public List<SensorData> getData() {
+                return data;
+            }
+        };
+
+        var processor = new SensorDataProcessorBuffered(BUFFER_SIZE, writer);
+        var writerThread = new Thread(() -> {
+            latchReady.countDown();
+            awaitLatch(latchReady);
+            sensorDataList.forEach(processor::process);
+            processFlag.set(false);
+        });
+        var flusherThread = new Thread(() -> {
+            latchReady.countDown();
+            awaitLatch(latchReady);
+            while (processFlag.get()) {
+                processor.flush();
+            }
+        });
+
+        writerThread.start();
+        flusherThread.start();
+
+        writerThread.join(100);
+        flusherThread.join(100);
+
+        assertThat(writer.getData()).hasSize(sensorDataList.size());
+        assertThat(writer.getData()).isEqualTo(sensorDataList);
     }
 
     private List<SensorData> getSensorDataForTest(int limit) {
