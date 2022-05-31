@@ -1,6 +1,5 @@
 package ru.otus.crm.service;
 
-import ru.otus.crm.model.Client;
 import ru.otus.crm.model.Manager;
 
 import java.util.List;
