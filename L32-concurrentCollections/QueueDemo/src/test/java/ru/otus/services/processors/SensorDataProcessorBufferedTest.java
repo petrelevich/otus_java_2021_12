@@ -153,9 +153,9 @@ class SensorDataProcessorBufferedTest {
         var flusherThread = new Thread(() -> {
             latchReady.countDown();
             awaitLatch(latchReady);
-            while (processFlag.get()) {
+            do {
                 processor.flush();
-            }
+            } while (processFlag.get());
         });
 
         writerThread.start();
