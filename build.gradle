@@ -28,6 +28,7 @@ allprojects {
             imports {
                 mavenBom("org.springframework.boot:spring-boot-dependencies:2.6.4")
                 mavenBom("com.google.protobuf:protobuf-bom:3.21.1")
+                mavenBom("org.testcontainers:testcontainers-bom:1.17.2")
             }
             dependency("com.google.guava:guava:${Versions.guava}")
             dependency("org.openjdk.jmh:jmh-core:${Versions.jmh}")
@@ -35,9 +36,6 @@ allprojects {
             dependency("org.openjdk.jol:jol-core:${Versions.jol}")
             dependency("org.ow2.asm:asm-commons:${Versions.asm}")
             dependency("org.glassfish:javax.json:${Versions.glassfishJson}")
-
-            dependency("org.testcontainers:junit-jupiter:${Versions.testcontainers}")
-            dependency("org.testcontainers:postgresql:${Versions.testcontainers}")
 
             dependency("org.projectlombok:lombok:${Versions.lombok}")
             dependency("com.google.code.gson:gson:${Versions.gson}")
@@ -63,6 +61,7 @@ allprojects {
             dependency("io.grpc:grpc-netty:${Versions.grpc}")
             dependency("io.grpc:grpc-protobuf:${Versions.grpc}")
             dependency("io.grpc:grpc-stub:${Versions.grpc}")
+            dependency("org.apache.kafka:kafka-clients:${Versions.kafkaClients}")
         }
     }
 
