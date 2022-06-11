@@ -3,6 +3,7 @@ package ru.otus.crm.repository;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import ru.otus.crm.model.Client;
+import ru.otus.crm.model.ClientDetails;
 import ru.otus.crm.model.Manager;
 
 import java.sql.ResultSet;
@@ -27,7 +28,10 @@ public class ManagerResultSetExtractorClass implements ResultSetExtractor<List<M
             }
             Long clientId = (Long) rs.getObject("client_id");
             if (manager !=  null && clientId != null) {
-                manager.getClients().add(new Client(clientId, rs.getString("client_name"), managerId, rs.getInt("order_column")));
+                manager.getClients().add(
+                        new Client(clientId, rs.getString("client_name"),
+                                managerId, rs.getInt("order_column"),
+                                new ClientDetails(rs.getString("client_info"))));
             }
         }
         return managerList;
