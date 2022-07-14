@@ -9,9 +9,6 @@ public class ApplicationConfiguration {
 
     @Bean
     AppConfigForBean messageConfig(@Value("${application.param-name}") String param) {
-        if (param == null)  {
-
-        }
         return new AppConfigForBean(param);
     }
 }
